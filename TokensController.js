@@ -12,11 +12,11 @@ Ext.define("TokensController", {
 	 * This property must be used in all forward requests.
 	 * http://cursame.com/api/tokens/create.json?email=armando%40cursa.me&password=123456&callback=Ext.data.JsonP.callback2 
 	 * @param {String} email A valid user email.
-	 * @param {String} password A valid user password.
+	 * @param {String} [password] A valid user password.
 	 * @param {Boolean} recover the password with te email.
 	 * @return {Object} the new ID
 	 */
-	create: function(email, [password], recover){
+	create: function(email, password, recover){
 	},
 	/**
 	 * This method is use to destroy the User session, Returns a JSON object with the token and succes poperty to true
@@ -33,11 +33,11 @@ Ext.define("TokensController", {
 	 * @param  {String} first_name The first name of the user
 	 * @param  {String} last_name The last name of the user
 	 * @param  {String} password A valid password for the user
-	 * @param  {String} subdomain The network form of the user
+	 * @param  {String} [subdomain] The network form of the user
 	 * @return {Object} The response object
 	 * @return {Boolean} success true or false
 	 * @return {String} msg The message os the response
 	 */
-	native_create_user: function (email, first_name, last_name, password, [subdomain]) {		
+	native_create_user: function (email, first_name, last_name, password, subdomain) {		
 	}
 });

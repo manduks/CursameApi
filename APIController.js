@@ -2,8 +2,7 @@
 * This is the main API class for Cursame, all the responses are in JSON and are calle using JSONP all the params are send using GET, for more infomation check the JSONP API
 */
 Ext.define("ApiController", {
-    extend: "ApplicationController",
-    
+    extend: "ApplicationController",    
 	/**
 	 * This method is used to list all the publications on web-mobile.
 	 * </br>http://cursame.com/api/tokens/publications.json?type=Comment&auth_token=gQq4gRdZxjneg7KmZx2L&limit=20&page=3&callback=Ext.data.JsonP.callback5
@@ -15,9 +14,8 @@ Ext.define("ApiController", {
 	 * @return {Object} The JSON success object
 	 * @return {Number} return.count A number with the total of elements
 	 */
-	publications: function(type, auth_token, [publicacionId], limit, page){
+	publications: function(type, auth_token, publicacionId, limit, page){
 	},
-
 	/**
 	 * This method is used to list all the publications on mobile.
 	 * </br>http://cursame.com/api/tokens/publications.json?type=Comment&auth_token=gQq4gRdZxjneg7KmZx2L&limit=20&page=3&callback=Ext.data.JsonP.callback5
@@ -29,9 +27,8 @@ Ext.define("ApiController", {
 	 * @return {Object} The JSON success object
 	 * @return {Number} return.count A number with the total of elements
 	 */
-	native_publications: function(type, auth_token, [publicacionId], limit, page){
+	native_publications: function(type, auth_token, publicacionId, limit, page){
 	},
-
 	/**
 	 * This method is use to list all the comments for  Courses/Comments/Surveys/Assigments/Discussions
 	 * </br>http://cursame.com/api/api/comments.json?_dc=1374103318297&commentable_type=Delivery&commentable_id=16&auth_token=gQq4gRdZxjneg7KmZx2L&page=1&start=0&limit=25&callback=Ext.data.JsonP.callback13
@@ -45,8 +42,7 @@ Ext.define("ApiController", {
 	 * @return {Number} return.count A number with the total of comments
 	 */
 	comments: function(commentable_type, commentable_id, auth_token){
-	},
-	
+	},	
 	/**
 	 * This method is use to list all the network curses
 	 * </br>http://cursame.com/api/api/courses.json?_dc=1374101789792&auth_token=gQq4gRdZxjneg7KmZx2L&page=1&start=0&limit=25&callback=Ext.data.JsonP.callback9
@@ -58,9 +54,7 @@ Ext.define("ApiController", {
 	 * @return {Number} return.count A number with the total of elements
 	 */
 	courses: function(auth_token, limit, page){
-	},
-	
-	
+	},	
 	/**
 	 * This method is use to list all users in the network.
 	 * </br>http://cursame.com/api/api/users.json?_dc=1374101741721&auth_token=gQq4gRdZxjneg7KmZx2L&page=1&start=0&limit=100&callback=Ext.data.JsonP.callback7
@@ -110,7 +104,7 @@ Ext.define("ApiController", {
 	 * @return {Object} The JSON success object
 	 * @return {Boolean} return.success If the success is true
 	 */
-	create_comment: function(commentable_type, commentable_id, comment, [id], auth_token){
+	create_comment: function(commentable_type, commentable_id, comment, id, auth_token){
 	},
 	
 	/**
@@ -153,17 +147,18 @@ Ext.define("ApiController", {
 	 * @return {Boolean} return.success If the success is true
 	 */
 	native_create_delivery: function (auth_token, title, description, publication,deliver, value, couseId, files, areas) {
-	}	
+	},	
 	/**
 	 * This method is use to add a discussion to a course or a network
 	 * </br>http://cursame.com/api/api/create_discussion?auth_token=wBqKcM7KozHvF7dqsYZT&title=Hola&discussion=hay&courseId=1&callback=Ext.data.JsonP.callback5	 
+	 * @param  {String} auth_token The user token to have access to the methods
 	 * @param {String} title The discussion title.
 	 * @param {String} discussion The dellivery description.
 	 * @param {Number} courseId The id of the course.
 	 * @return {Object} The JSON success object
 	 * @return {Boolean} return.success If the success is true
 	 */
-	create_discussion: function(discussionauth_token){
+	create_discussion: function(auth_token,title, discussion, courseId){
 	},	
 	/**
 	 * This method is use to delete an element in the network
@@ -214,7 +209,7 @@ Ext.define("ApiController", {
 	/**
 	 * This method changes the status of the notifications to false, or seen
 	 * @param  {String} auth_token The user token to have access to the methods
-	 * @param  {[type]} id The id of the notification
+	 * @param  {Number} id The id of the notification
 	 * @return {Object} The JSON success object
 	 * @return {Boolean} return.success If the success is true
 	 */
@@ -238,14 +233,14 @@ Ext.define("ApiController", {
 	 * @param  {String} email The email of the user
 	 * @param  {String} first_name The first name of the user
 	 * @param  {String} last_name  The last name of the user
-	 * @param  {String} bios The bio of the user
-	 * @param  {String} twitter_link The twitter link of the user
-	 * @param  {Object} avatar A valid image used for the avatar of the user 
-	 * @param  {Object} coverphoto A valid image for the cover photo of the user
+	 * @param  {String} [bios] The bio of the user
+	 * @param  {String} [twitter_link] The twitter link of the user
+	 * @param  {Object} [avatar] A valid image used for the avatar of the user 
+	 * @param  {Object} [coverphoto] A valid image for the cover photo of the user
 	 * @return {Object} The JSON success object
 	 * @return {Boolean} return.success If the success is true
 	 */
-	native_update_user_profile: function (auth_token, id, email, first_name, last_name, [bios], [twitter_link], [avatar], [coverphoto]) {
+	native_update_user_profile: function (auth_token, id, email, first_name, last_name, bios, twitter_link, avatar, coverphoto) {
 	},
 	/**
 	 * The method for creating or updating courses
@@ -255,7 +250,7 @@ Ext.define("ApiController", {
 	 * @return {Object} The JSON success object
 	 * @return {Boolean} return.success If the success is true
 	 */
-	native_create_courses: function (auth_token, course, [id]) {
+	native_create_courses: function (auth_token, course, id) {
 	},
 	/**
 	 * The method for answering surveys
@@ -312,7 +307,7 @@ Ext.define("ApiController", {
 	 * @return {Object} The JSON success object
 	 * @return {Boolean} return.success If the success is true
 	 */
-	native_add_new_message: function (auth_token, mesage, [channel_name]) {
+	native_add_new_message: function (auth_token, mesage, channel_name) {
 	},
 	/**
 	 * The method to show the chat list
